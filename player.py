@@ -8,6 +8,8 @@ class Player:
 
         self.points = 0
 
+        self.ultimate = 3
+
         self.image = pygame.image.load(image)
         self.image = pygame.transform.scale(self.image, (128, 165))
 
@@ -40,6 +42,24 @@ class Player:
 
             # Altera o eixo X do objeto
             self.pos_x = vet_x
+
+    def use_ultimate(self) -> bool:
+
+        print(self.ultimate)
+
+        pressed_keys = pygame.key.get_pressed()
+
+        if pressed_keys[self.keys["ultimate"]]:
+
+            if self.ultimate <= 0:
+
+                return False
+            
+            return True
+        
+        else:
+
+            return False
 
     def check_colission(self, other) -> bool:
 

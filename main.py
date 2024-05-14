@@ -38,7 +38,8 @@ eat_sound = pygame.mixer.Sound("sounds/eat.mp3")
 
 luffy = Player("images/luffy.png", {
     "left": pygame.K_a,
-    "right": pygame.K_d
+    "right": pygame.K_d,
+    "ultimate": pygame.K_SPACE
 }, screen)
 
 items = list()
@@ -55,6 +56,7 @@ while running:
 
         luffy.render()
         luffy.move()
+
 
         for item in items:
 
@@ -95,10 +97,17 @@ while running:
 
             items.append(Item(screen))
 
+        # Se usar a ultimate todos os itens irão sumir
+        if luffy.use_ultimate():
+
+            items.clear()
+
+            luffy.ultimate -= 1
+
         # Pontuação
         screen.blit(font.render(f'Pontuação: {luffy.points}', True, (255, 0, 0)), (0, 0))
 
-    # Quit
+    #region Quit
 
     for event in pygame.event.get():
 
@@ -106,7 +115,11 @@ while running:
 
             running = False
 
-    # Update
+    #endregion
+
+    #region Update
 
     pygame.display.update()
     clock.tick(60)
+
+    #endregion
