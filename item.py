@@ -1,5 +1,5 @@
 import pygame
-from random import randint, randrange, choice
+from random import randint, randrange
 from os import listdir
 
 class Item:
@@ -8,20 +8,21 @@ class Item:
 
         self.screen = screen
     
-        # Decide aleatoriamente o tipo do item
+        #region Decide aleatoriamente o tipo do item
+
         if randint(0, 1) > 0:
 
             # Akuma No Mi
-
             self.status = "bomb"
-            self.image = pygame.image.load("images/akumanomi/"+choice(listdir("images/akumanomi")))
+            self.image = pygame.image.load("images/akumanomi/"+randint(1, 3))
 
         else:
 
             # Comida
-
             self.status = "food"
-            self.image = pygame.image.load("images/comidas/"+choice(listdir("images/comidas")))
+            self.image = pygame.image.load("images/comidas/"+randint(1, 5))
+
+        #endregion
 
         self.image = pygame.transform.scale(self.image, (64, 64))
 
