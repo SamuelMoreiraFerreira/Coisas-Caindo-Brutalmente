@@ -29,11 +29,11 @@ class Item:
 
         # Eixo X aleatório
         self.pos_x = randint(0, self.screen.get_width() - self.image.get_width())
-        
+
         self.pos_y = - self.image.get_height()
 
         # Velocidade aleatória
-        self.velocity = randrange(2, 3)
+        self.velocity = randrange(1, 4)
 
 
     def render(self):

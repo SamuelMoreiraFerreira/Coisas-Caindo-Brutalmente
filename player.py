@@ -6,6 +6,8 @@ class Player:
 
         self.screen = screen
 
+        self.points = 0
+
         self.image = pygame.image.load(image)
         self.image = pygame.transform.scale(self.image, (128, 165))
 

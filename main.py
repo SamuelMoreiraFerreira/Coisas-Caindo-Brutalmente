@@ -8,8 +8,33 @@ pygame.display.set_caption("Carnes Caindo Brutalmente")
 screen = pygame.display.set_mode((800, 500))
 clock = pygame.time.Clock()
 
+#region Background
+
 background = pygame.image.load("images/cozinha.jpg")
 background = pygame.transform.scale(background, (800, 500))
+
+#endregion
+
+#region Fonte
+
+font = pygame.font.SysFont("Castellar", 35)
+game_over_txt = font.render("Você perdeu!", True, (255, 0, 0))
+
+#endregion
+
+#region Música de Fundo
+
+pygame.mixer.music.load("sounds/theme.mp3")
+pygame.mixer.music.set_endevent(pygame.USEREVENT)
+pygame.mixer.music.play()
+
+#endregion
+
+#region Carregando Sons
+
+eat_sound = pygame.mixer.Sound("sounds/eat.mp3")
+
+#endregion
 
 luffy = Player("images/luffy.png", {
     "left": pygame.K_a,
@@ -18,38 +43,70 @@ luffy = Player("images/luffy.png", {
 
 items = list()
 
+lost = False
+
 running = True
 
 while running:
 
-    screen.blit(background, (0, 0))
+    if not lost:
 
-    luffy.render()
-    luffy.move()
+        screen.blit(background, (0, 0))
 
-    for item in items:
+        luffy.render()
+        luffy.move()
 
-        # Será apagado da lista após sair da tela
-        if item.pos_y >= screen.get_height() or luffy.check_colission(item):
+        for item in items:
 
-            items.remove(item)
+            # Será apagado da lista após sair da tela
+            if item.pos_y >= screen.get_height():
 
-        else:
+                items.remove(item)
 
-            item.render()
-            item.fall()
+            elif luffy.check_colission(item):
 
-    # Sempre terá 8 itens sendo renderizado
-    if len(items) < 8:
+                eat_sound.play()
 
-        items.append(Item(screen))
+                # Incrementar a pontuação caso for comida
+                if item.status == "food":
+            
+                    luffy.points += 10
 
+                    # Apaga da lista            
+                    items.remove(item)
+
+                # Encerrar o jogo caso for Akuma no Mi
+                if item.status == "bomb":
+
+                    lost = True
+
+                    screen.fill((0, 0, 0))
+                    screen.blit(game_over_txt, ((screen.get_width() - game_over_txt.get_width()) / 2, (screen.get_height() - game_over_txt.get_height()) / 2))
+
+                    break
+
+            else:
+
+                item.render()
+                item.fall()
+
+        # Sempre terá 8 itens sendo renderizado
+        if len(items) < 8:
+
+            items.append(Item(screen))
+
+        # Pontuação
+        screen.blit(font.render(f'Pontuação: {luffy.points}', True, (255, 0, 0)), (0, 0))
+
+    # Quit
 
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
 
             running = False
+
+    # Update
 
     pygame.display.update()
     clock.tick(60)
