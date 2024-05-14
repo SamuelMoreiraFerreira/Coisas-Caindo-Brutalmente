@@ -14,13 +14,13 @@ class Item:
 
             # Akuma No Mi
             self.status = "bomb"
-            self.image = pygame.image.load("images/akumanomi/"+str(randint(1, 3)))
+            self.image = pygame.image.load("images/akumanomi/"+str(randint(1, 3))+".png")
 
         else:
 
             # Comida
             self.status = "food"
-            self.image = pygame.image.load("images/comidas/"+str(randint(1, 5)))
+            self.image = pygame.image.load("images/comidas/"+str(randint(1, 5))+".png")
 
         #endregion
 
@@ -34,7 +34,7 @@ class Item:
         self.pos_y = - self.image.get_height()
 
         # Velocidade aleatória
-        self.velocity = randrange(1, 4)
+        self.velocity = randrange(1, 5)
 
 
     def render(self):

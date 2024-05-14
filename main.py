@@ -57,7 +57,6 @@ while running:
         luffy.render()
         luffy.move()
 
-
         for item in items:
 
             # Será apagado da lista após sair da tela
@@ -67,18 +66,27 @@ while running:
 
             elif luffy.check_colission(item):
 
+                # Som de Comer
                 eat_sound.play()
 
-                # Incrementar a pontuação caso for comida
+                #region Comida
+
                 if item.status == "food":
             
+                    # Incrementar a pontuação caso for comida
+
                     luffy.points += 10
 
                     # Apaga da lista            
                     items.remove(item)
 
-                # Encerrar o jogo caso for Akuma no Mi
+                #endregion
+
+                #region Akuma no Mi
+                    
                 if item.status == "bomb":
+
+                    # Encerrar o jogo caso for Akuma no Mi
 
                     lost = True
 
@@ -86,6 +94,8 @@ while running:
                     screen.blit(game_over_txt, ((screen.get_width() - game_over_txt.get_width()) / 2, (screen.get_height() - game_over_txt.get_height()) / 2))
 
                     break
+
+                #endregion
 
             else:
 
@@ -96,13 +106,6 @@ while running:
         if len(items) < 8:
 
             items.append(Item(screen))
-
-        # Se usar a ultimate todos os itens irão sumir
-        if luffy.use_ultimate():
-
-            items.clear()
-
-            luffy.ultimate -= 1
 
         # Pontuação
         screen.blit(font.render(f'Pontuação: {luffy.points}', True, (255, 0, 0)), (0, 0))
@@ -115,6 +118,17 @@ while running:
 
             running = False
 
+        if event.type == pygame.KEYDOWN:
+
+            # Ultimate limpará todos os itens da tela
+            if event.key == luffy.keys["ultimate"]:
+
+                if luffy.ultimate > 0:
+
+                    luffy.ultimate -= 1
+
+                    items.clear()
+        
     #endregion
 
     #region Update

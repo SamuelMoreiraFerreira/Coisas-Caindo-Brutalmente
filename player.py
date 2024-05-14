@@ -43,24 +43,6 @@ class Player:
             # Altera o eixo X do objeto
             self.pos_x = vet_x
 
-    def use_ultimate(self) -> bool:
-
-        print(self.ultimate)
-
-        pressed_keys = pygame.key.get_pressed()
-
-        if pressed_keys[self.keys["ultimate"]]:
-
-            if self.ultimate <= 0:
-
-                return False
-            
-            return True
-        
-        else:
-
-            return False
-
     def check_colission(self, other) -> bool:
 
         return self.mask.overlap(other.mask, (other.pos_x - self.pos_x, other.pos_y - self.pos_y))
