@@ -14,13 +14,13 @@ class Item:
 
             # Akuma No Mi
             self.status = "bomb"
-            self.image = pygame.image.load("images/akumanomi/"+randint(1, 3))
+            self.image = pygame.image.load("images/akumanomi/"+str(randint(1, 3)))
 
         else:
 
             # Comida
             self.status = "food"
-            self.image = pygame.image.load("images/comidas/"+randint(1, 5))
+            self.image = pygame.image.load("images/comidas/"+str(randint(1, 5)))
 
         #endregion
 
