@@ -25,7 +25,7 @@ class Player:
 
         self.screen.blit(self.image, (self.pos_x, self.pos_y))
 
-    def move(self, steps:int=5):
+    def move(self, steps:int=10):
 
         pressed_keys = pygame.key.get_pressed()
 
@@ -38,3 +38,7 @@ class Player:
 
             # Altera o eixo X do objeto
             self.pos_x = vet_x
+
+    def check_colission(self, other) -> bool:
+
+        return self.mask.overlap(other.mask, (other.pos_x - self.pos_x, other.pos_y - self.pos_y))
