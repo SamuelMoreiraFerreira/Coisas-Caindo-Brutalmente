@@ -13,13 +13,13 @@ class Item:
         if randint(0, 1) > 0:
 
             # Akuma No Mi
-            self.status = "bomb"
+            self.status = "ruim"
             self.image = pygame.image.load("images/akumanomi/"+str(randint(1, 3))+".png")
 
         else:
 
             # Comida
-            self.status = "food"
+            self.status = "bom"
             self.image = pygame.image.load("images/comidas/"+str(randint(1, 5))+".png")
 
         #endregion

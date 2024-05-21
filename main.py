@@ -71,7 +71,7 @@ while running:
 
                 #region Comida
 
-                if item.status == "food":
+                if item.status == "bom":
             
                     # Incrementar a pontuação caso for comida
 
@@ -84,7 +84,7 @@ while running:
 
                 #region Akuma no Mi
                     
-                if item.status == "bomb":
+                if item.status == "ruim":
 
                     # Encerrar o jogo caso for Akuma no Mi
 
