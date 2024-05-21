@@ -33,6 +33,7 @@ pygame.mixer.music.play()
 #region Carregando Sons
 
 eat_sound = pygame.mixer.Sound("sounds/eat.mp3")
+fail_sound = pygame.mixer.Sound("sounds/fail.mp3")
 
 #endregion
 
@@ -95,6 +96,9 @@ while running:
 
                     # Pausar a música de fundo
                     pygame.mixer.music.pause()
+
+                    # Som de Perder
+                    fail_sound.play()
 
                     break
 
