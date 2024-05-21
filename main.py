@@ -115,7 +115,12 @@ while running:
             items.append(Item(screen))
 
         # Pontuação
-        screen.blit(font.render(f'Pontuação: {luffy.points}', True, (255, 0, 0)), (0, 0))
+        points_txt = font.render(f'Pontuação: {luffy.points}', True, (255, 0, 0))
+        screen.blit(points_txt, (0, 0))
+
+        #Ultimate
+        ultimate_txt = font.render(f'Ultimates: {luffy.ultimate}', True, (0, 255, 0))
+        screen.blit(ultimate_txt, (screen.get_width()-ultimate_txt.get_width(), 0))
 
     #region Quit
 
