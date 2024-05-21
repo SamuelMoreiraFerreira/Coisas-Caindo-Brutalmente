@@ -11,7 +11,7 @@ class Player:
         self.ultimate = 3
 
         self.image = pygame.image.load(image)
-        self.image = pygame.transform.scale(self.image, (128, 165))
+        self.image = pygame.transform.scale(self.image, (128, 128))
 
         self.width = self.image.get_width()
         self.height = self.image.get_height()
