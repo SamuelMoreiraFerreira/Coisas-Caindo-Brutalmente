@@ -93,6 +93,9 @@ while running:
                     screen.fill((0, 0, 0))
                     screen.blit(game_over_txt, ((screen.get_width() - game_over_txt.get_width()) / 2, (screen.get_height() - game_over_txt.get_height()) / 2))
 
+                    # Pausar a música de fundo
+                    pygame.mixer.music.pause()
+
                     break
 
                 #endregion
