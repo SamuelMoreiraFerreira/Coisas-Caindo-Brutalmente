@@ -34,7 +34,7 @@ class Item:
         self.pos_y = - self.image.get_height()
 
         # Velocidade aleatória
-        self.velocity = randrange(1, 5)
+        self.velocity = randint(2, 7)
 
 
     def render(self):
