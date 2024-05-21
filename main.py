@@ -17,7 +17,7 @@ background = pygame.transform.scale(background, (800, 500))
 
 #region Fonte
 
-font = pygame.font.SysFont("Castellar", 35)
+font = pygame.font.SysFont("Comic Sans", 35, True)
 game_over_txt = font.render("Você perdeu!", True, (255, 0, 0))
 
 #endregion
